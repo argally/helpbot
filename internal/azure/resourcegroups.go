@@ -39,8 +39,6 @@ func CreateResourceGroup(ctx context.Context, resourceGroupName, location string
 	return &resourceGroupResp.ResourceGroup, nil
 }
 
-// Return an error if the Resource Group already exists
-
 // checkResourceGroupAvailability checks if a Resource Group with the specified name exists.
 // It returns true if the Resource Group exists, otherwise false.
 func checkResourceGroupAvailability(ctx context.Context, resourceGroupName string) (bool, error) {
