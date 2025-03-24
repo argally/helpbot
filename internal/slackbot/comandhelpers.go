@@ -55,16 +55,16 @@ func AzureHelpers() *slacker.CommandDefinition {
 
 			// Validate input parameters
 			if resourceType == "" || resourceName == "" {
-				ctx.Response().Reply(":x: Missing required parameters. Please provide `resource-type`, `resource-name`")
+				ctx.Response().Reply(":x: Missing required parameters. Please provide `resource-type`, `resource-name`") //nolint:errcheck
 				return
 			}
 			if location == "" {
-				ctx.Response().Reply(":information_source: Location will default to eastus")
+				ctx.Response().Reply(":information_source: Location will default to eastus") //nolint:errcheck
 			}
 
 			result, err := azure.AzureServicesCreate(ctx.Context(), resourceName, resourceType, location)
 			if err != nil {
-				ctx.Response().Reply(fmt.Sprintf(":x: Error creating resource %v", err))
+				ctx.Response().Reply(fmt.Sprintf(":x: Error creating resource %v", err)) //nolint:errcheck
 				return
 			}
 			attachments := createSlackAttachment(result)
