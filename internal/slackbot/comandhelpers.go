@@ -68,7 +68,7 @@ func AzureHelpers() *slacker.CommandDefinition {
 				return
 			}
 			attachments := createSlackAttachment(result)
-			ctx.Response().ReplyBlocks(attachments)
+			ctx.Response().PostBlocks(ctx.Event().ChannelID, attachments)
 		},
 	}
 	return azurebot
