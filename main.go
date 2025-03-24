@@ -20,15 +20,12 @@ func main() {
 	bot.AddCommand(&slacker.CommandDefinition{
 		Command: "hello",
 		Handler: func(ctx *slacker.CommandContext) {
-			// Define the list of channel IDs
-			channels := []string{"CR3PKAYJ1", "C08H7M5KJ72"}
-
 			// Get the native Slack client
 			slackClient := ctx.SlackClient()
 
 			// Iterate over the channels and post a message to each
-			for _, channel := range channels {
-				_, _, err := slackClient.PostMessage(channel, slack.MsgOptionText(ctx.Event().ChannelID, false))
+			for _, channel := range slackbot.ChannelList {
+				_, _, err := slackClient.PostMessage(channel.ID, slack.MsgOptionText(ctx.Event().ChannelID, false))
 				if err != nil {
 					log.Printf("Failed to post message to channel %s: %v", channel, err)
 				} else {
